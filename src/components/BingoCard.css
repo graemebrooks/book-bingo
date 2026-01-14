@@ -1,0 +1,37 @@
+.bingo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.bingo-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #ff0000;
+}
+
+.bingo-card {
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+  transform-style: preserve-3d;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.bingo-card:hover {
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.6),
+    0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.bingo-image {
+  display: block;
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+}
