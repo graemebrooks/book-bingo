@@ -40,7 +40,7 @@
   transition: filter 0.3s ease-out;
 }
 
-.bingo-tile:hover .sticker {
+.sticker.lifted {
   transform:
     perspective(500px)
     rotateX(-30deg)
@@ -50,6 +50,6 @@
     translateZ(80px);
 }
 
-.bingo-tile:hover .sticker .sticker-image {
+.sticker.lifted .sticker-image {
   filter: drop-shadow(10px 25px 30px rgba(0, 0, 0, 0.6));
 }

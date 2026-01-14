@@ -86,8 +86,8 @@ function BingoGrid({ imageSrc }) {
     }
   };
 
-  // No stickers for now
-  const doneTiles = [];
+  // Test stickers
+  const doneTiles = [5, 12];
 
   // Generate 5x5 grid of tiles
   const tiles = [];

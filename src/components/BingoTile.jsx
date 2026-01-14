@@ -14,7 +14,7 @@ function BingoTile({ row, col, index, imageSrc, isHovered, isSelected, isDone })
       }}
     >
       {isDone && (
-        <div className="sticker">
+        <div className={`sticker ${isHovered ? 'lifted' : ''}`}>
           <img src={doneSticker} alt="Done" className="sticker-image" />
         </div>
       )}
