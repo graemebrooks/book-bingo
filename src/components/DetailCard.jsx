@@ -3,11 +3,10 @@ import './DetailCard.css';
 function DetailCard({ data, onClose }) {
   const { title, goal, booksRead, potentialBooks } = data;
 
-  // ASCII progress bar
+  // ASCII progress bar with separate spans for styling
   const barLength = 20;
   const filled = Math.round((booksRead.length / goal) * barLength);
   const empty = barLength - filled;
-  const progressBar = '█'.repeat(filled) + '░'.repeat(empty);
 
   return (
     <div className="detail-card">
@@ -21,7 +20,10 @@ function DetailCard({ data, onClose }) {
           <span>{booksRead.length}/{goal}</span>
         </div>
         <div className="progress-bar">
-          [{progressBar}]
+          <span className="bracket">[</span>
+          <span className="filled">{'█'.repeat(filled)}</span>
+          <span className="empty">{'░'.repeat(empty)}</span>
+          <span className="bracket">]</span>
         </div>
       </div>
 

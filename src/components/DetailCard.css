@@ -1,28 +1,17 @@
 .detail-card {
-  background: #0a0a0a;
-  border: 1px solid #440000;
-  padding: 20px 24px;
+  background: #0d0808;
+  padding: 24px 28px;
   width: 340px;
   max-height: 500px;
   overflow-y: auto;
   position: relative;
   animation: slideIn 0.3s ease-out;
-  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
   margin-left: 40px;
   box-shadow:
-    0 0 20px rgba(255, 0, 0, 0.1),
-    0 0 40px rgba(255, 0, 0, 0.05);
-}
-
-.detail-card::before {
-  content: '┌─────────────────────────────────────────┐';
-  position: absolute;
-  top: 4px;
-  left: 8px;
-  color: #ff0000;
-  font-size: 0.7rem;
-  letter-spacing: -1px;
-  pointer-events: none;
+    0 0 30px rgba(180, 50, 50, 0.15),
+    0 0 60px rgba(180, 50, 50, 0.08),
+    inset 0 0 80px rgba(180, 50, 50, 0.03);
 }
 
 @keyframes slideIn {
@@ -38,83 +27,85 @@
 
 .detail-close {
   position: absolute;
-  top: 8px;
-  right: 12px;
+  top: 12px;
+  right: 16px;
   background: none;
   border: none;
-  color: #666;
+  color: #882222;
   font-size: 14px;
   font-family: inherit;
   cursor: pointer;
   padding: 0;
-  transition: color 0.2s;
+  transition: color 0.2s, text-shadow 0.2s;
 }
 
 .detail-close:hover {
-  color: #ff0000;
+  color: #dd3333;
+  text-shadow: 0 0 8px rgba(220, 50, 50, 0.8);
 }
 
 .detail-title {
-  color: #ff0000;
+  color: #dd3333;
   font-size: 1.1rem;
   font-weight: 600;
-  margin: 8px 0 20px 0;
+  margin: 0 0 24px 0;
   padding-right: 30px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  text-shadow: 0 0 10px rgba(220, 50, 50, 0.5);
 }
 
 .detail-title::before {
   content: '> ';
-  color: #ff4444;
+  color: #bb2222;
 }
 
 .detail-section {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .detail-section h3 {
-  color: #ff4444;
-  font-size: 0.75rem;
+  color: #cc3333;
+  font-size: 0.7rem;
   font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  margin: 0 0 10px 0;
+  letter-spacing: 0.2em;
+  margin: 0 0 12px 0;
+  text-shadow: 0 0 8px rgba(200, 50, 50, 0.4);
 }
 
 .detail-section h3::before {
-  content: '── ';
-  color: #660000;
-}
-
-.detail-section h3::after {
-  content: ' ──────────────────';
-  color: #660000;
+  content: ':: ';
+  color: #882222;
 }
 
 .progress-header {
   display: flex;
   justify-content: space-between;
-  color: #888;
-  font-size: 0.75rem;
-  margin-bottom: 8px;
+  color: #774444;
+  font-size: 0.7rem;
+  margin-bottom: 10px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
 
 .progress-bar {
   font-family: inherit;
-  font-size: 0.9rem;
-  color: #ff0000;
-  letter-spacing: 0;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-shadow: 0 0 6px rgba(170, 85, 85, 0.6);
 }
 
-.progress-bar-track {
-  color: #330000;
+.progress-bar .filled {
+  color: #dd3333;
 }
 
-.progress-bar-fill {
-  color: #ff0000;
+.progress-bar .empty {
+  color: #3a1111;
+}
+
+.progress-bar .bracket {
+  color: #882222;
 }
 
 .book-list {
@@ -124,50 +115,37 @@
 }
 
 .book-item {
-  padding: 6px 0;
-  font-size: 0.85rem;
-  border-bottom: 1px solid #1a1a1a;
-}
-
-.book-item:last-child {
-  border-bottom: none;
+  padding: 8px 0;
+  font-size: 0.8rem;
 }
 
 .book-item.read {
-  color: #ff6666;
+  color: #dd4444;
+  text-shadow: 0 0 8px rgba(220, 60, 60, 0.4);
 }
 
 .book-item.read::before {
-  content: '[✓] ';
-  color: #00ff64;
+  content: '[x] ';
+  color: #44dd44;
+  text-shadow: 0 0 8px rgba(68, 220, 68, 0.5);
 }
 
 .book-item.potential {
-  color: #666;
+  color: #664444;
 }
 
 .book-item.potential::before {
   content: '[ ] ';
-  color: #444;
+  color: #442222;
 }
 
 .empty-state {
-  color: #333;
-  font-size: 0.8rem;
-  font-style: italic;
+  color: #442222;
+  font-size: 0.75rem;
   margin: 0;
 }
 
 .empty-state::before {
-  content: '// ';
-  color: #440000;
-}
-
-.detail-footer {
-  margin-top: 16px;
-  padding-top: 12px;
-  border-top: 1px solid #220000;
-  color: #440000;
-  font-size: 0.7rem;
-  text-align: right;
+  content: '# ';
+  color: #551111;
 }
