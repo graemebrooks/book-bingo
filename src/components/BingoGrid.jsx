@@ -1,33 +1,34 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import BingoTile from './BingoTile';
 import DetailCard from './DetailCard';
 import './BingoGrid.css';
 
 // Sample data for tiles
+// Books can be strings (title only) or objects with { title, cover }
 const tileData = [
-  { title: "Fantasy", goal: 3, booksRead: ["The Name of the Wind"], potentialBooks: ["Mistborn", "The Way of Kings"] },
-  { title: "Mystery", goal: 2, booksRead: [], potentialBooks: ["Gone Girl", "The Silent Patient"] },
-  { title: "Sci-Fi", goal: 3, booksRead: ["Project Hail Mary"], potentialBooks: ["Dune", "Foundation"] },
-  { title: "Romance", goal: 1, booksRead: [], potentialBooks: ["Beach Read"] },
-  { title: "Historical Fiction", goal: 2, booksRead: [], potentialBooks: ["All the Light We Cannot See"] },
-  { title: "Memoir", goal: 1, booksRead: [], potentialBooks: ["Educated", "Born a Crime"] },
-  { title: "Poetry", goal: 1, booksRead: [], potentialBooks: ["Milk and Honey"] },
-  { title: "Graphic Novel", goal: 2, booksRead: ["Maus"], potentialBooks: ["Persepolis", "Saga Vol. 1"] },
-  { title: "Award Winner", goal: 1, booksRead: [], potentialBooks: ["Klara and the Sun"] },
+  { title: "Fantasy", goal: 3, booksRead: [{ title: "The Name of the Wind", cover: null }], potentialBooks: [{ title: "Mistborn", cover: null }, { title: "The Way of Kings", cover: null }] },
+  { title: "Mystery", goal: 2, booksRead: [], potentialBooks: [{ title: "Gone Girl", cover: null }, { title: "The Silent Patient", cover: null }] },
+  { title: "Sci-Fi", goal: 3, booksRead: [{ title: "Project Hail Mary", cover: null }], potentialBooks: [{ title: "Dune", cover: null }, { title: "Foundation", cover: null }] },
+  { title: "Romance", goal: 1, booksRead: [], potentialBooks: [{ title: "Beach Read", cover: null }] },
+  { title: "Historical Fiction", goal: 2, booksRead: [], potentialBooks: [{ title: "All the Light We Cannot See", cover: null }] },
+  { title: "Memoir", goal: 1, booksRead: [], potentialBooks: [{ title: "Educated", cover: null }, { title: "Born a Crime", cover: null }] },
+  { title: "Poetry", goal: 1, booksRead: [], potentialBooks: [{ title: "Milk and Honey", cover: null }] },
+  { title: "Graphic Novel", goal: 2, booksRead: [{ title: "Maus", cover: null }], potentialBooks: [{ title: "Persepolis", cover: null }, { title: "Saga Vol. 1", cover: null }] },
+  { title: "Award Winner", goal: 1, booksRead: [], potentialBooks: [{ title: "Klara and the Sun", cover: null }] },
   { title: "Debut Author", goal: 1, booksRead: [], potentialBooks: [] },
-  { title: "Over 500 Pages", goal: 1, booksRead: [], potentialBooks: ["The Count of Monte Cristo"] },
-  { title: "Under 200 Pages", goal: 2, booksRead: ["The Old Man and the Sea"], potentialBooks: ["Animal Farm"] },
-  { title: "Free Space", goal: 1, booksRead: ["Any book!"], potentialBooks: [] },
-  { title: "Translated Work", goal: 1, booksRead: [], potentialBooks: ["The Alchemist", "1Q84"] },
-  { title: "Non-Fiction", goal: 2, booksRead: [], potentialBooks: ["Sapiens", "Atomic Habits"] },
-  { title: "Classic", goal: 1, booksRead: [], potentialBooks: ["Pride and Prejudice", "1984"] },
-  { title: "Horror", goal: 1, booksRead: [], potentialBooks: ["The Shining", "Mexican Gothic"] },
-  { title: "YA Novel", goal: 1, booksRead: [], potentialBooks: ["The Hunger Games"] },
-  { title: "Reread", goal: 1, booksRead: [], potentialBooks: ["Harry Potter"] },
+  { title: "Over 500 Pages", goal: 1, booksRead: [], potentialBooks: [{ title: "The Count of Monte Cristo", cover: null }] },
+  { title: "Under 200 Pages", goal: 2, booksRead: [{ title: "The Old Man and the Sea", cover: null }], potentialBooks: [{ title: "Animal Farm", cover: null }] },
+  { title: "Free Space", goal: 1, booksRead: [{ title: "Any book!", cover: null }], potentialBooks: [] },
+  { title: "Translated Work", goal: 1, booksRead: [], potentialBooks: [{ title: "The Alchemist", cover: null }, { title: "1Q84", cover: null }] },
+  { title: "Non-Fiction", goal: 2, booksRead: [], potentialBooks: [{ title: "Sapiens", cover: null }, { title: "Atomic Habits", cover: null }] },
+  { title: "Classic", goal: 1, booksRead: [], potentialBooks: [{ title: "Pride and Prejudice", cover: null }, { title: "1984", cover: null }] },
+  { title: "Horror", goal: 1, booksRead: [], potentialBooks: [{ title: "The Shining", cover: null }, { title: "Mexican Gothic", cover: null }] },
+  { title: "YA Novel", goal: 1, booksRead: [], potentialBooks: [{ title: "The Hunger Games", cover: null }] },
+  { title: "Reread", goal: 1, booksRead: [], potentialBooks: [{ title: "Harry Potter", cover: null }] },
   { title: "Audiobook", goal: 2, booksRead: [], potentialBooks: [] },
   { title: "Book Club Pick", goal: 1, booksRead: [], potentialBooks: [] },
-  { title: "Set in Asia", goal: 1, booksRead: [], potentialBooks: ["Pachinko", "Shōgun"] },
-  { title: "LGBTQ+", goal: 1, booksRead: [], potentialBooks: ["Red, White & Royal Blue"] },
+  { title: "Set in Asia", goal: 1, booksRead: [], potentialBooks: [{ title: "Pachinko", cover: null }, { title: "Shōgun", cover: null }] },
+  { title: "LGBTQ+", goal: 1, booksRead: [], potentialBooks: [{ title: "Red, White & Royal Blue", cover: null }] },
   { title: "Published 2026", goal: 2, booksRead: [], potentialBooks: [] },
   { title: "Rec from Friend", goal: 1, booksRead: [], potentialBooks: [] },
 ];
@@ -36,14 +37,29 @@ function BingoGrid({ imageSrc }) {
   const cardRef = useRef(null);
   const [hoveredTile, setHoveredTile] = useState(null);
   const [selectedTile, setSelectedTile] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile/touch device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768 || 'ontouchstart' in window);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const getTileFromPosition = (e) => {
     const card = cardRef.current;
     const rect = card.getBoundingClientRect();
 
+    // Handle both mouse and touch events
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
     // Get position relative to card (0 to 1)
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
+    const x = (clientX - rect.left) / rect.width;
+    const y = (clientY - rect.top) / rect.height;
 
     // Clamp to valid range
     if (x < 0 || x > 1 || y < 0 || y > 1) return null;
@@ -55,6 +71,8 @@ function BingoGrid({ imageSrc }) {
   };
 
   const handleMouseMove = (e) => {
+    if (isMobile) return;
+
     const card = cardRef.current;
     const rect = card.getBoundingClientRect();
 
@@ -74,6 +92,8 @@ function BingoGrid({ imageSrc }) {
   };
 
   const handleMouseLeave = () => {
+    if (isMobile) return;
+
     const card = cardRef.current;
     card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
     setHoveredTile(null);
@@ -84,6 +104,19 @@ function BingoGrid({ imageSrc }) {
     if (tileIndex !== null) {
       setSelectedTile(selectedTile === tileIndex ? null : tileIndex);
     }
+  };
+
+  // Handle touch for sticker lift on mobile
+  const handleTouchStart = (e) => {
+    const tileIndex = getTileFromPosition(e);
+    if (tileIndex !== null) {
+      setHoveredTile(tileIndex);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    // Small delay before removing hover state so animation can be seen
+    setTimeout(() => setHoveredTile(null), 300);
   };
 
   // Test stickers
@@ -119,16 +152,27 @@ function BingoGrid({ imageSrc }) {
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           onClick={handleCardClick}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           <div className="bingo-grid">
             {tiles}
           </div>
         </div>
         {selectedTile !== null && (
-          <DetailCard
-            data={tileData[selectedTile]}
-            onClose={() => setSelectedTile(null)}
-          />
+          <>
+            {isMobile && (
+              <div
+                className="detail-backdrop"
+                onClick={() => setSelectedTile(null)}
+              />
+            )}
+            <DetailCard
+              key={selectedTile}
+              data={tileData[selectedTile]}
+              onClose={() => setSelectedTile(null)}
+            />
+          </>
         )}
       </div>
     </div>

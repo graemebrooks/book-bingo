@@ -1,5 +1,22 @@
 import './DetailCard.css';
 
+function BookItem({ book, type }) {
+  // Handle both string format and object format
+  const title = typeof book === 'string' ? book : book.title;
+  const cover = typeof book === 'object' ? book.cover : null;
+
+  return (
+    <li className={`book-item ${type}`}>
+      {cover ? (
+        <img src={cover} alt={title} className="book-cover" />
+      ) : (
+        <div className="book-cover-placeholder" />
+      )}
+      <span className="book-title">{title}</span>
+    </li>
+  );
+}
+
 function DetailCard({ data, onClose }) {
   const { title, goal, booksRead, potentialBooks } = data;
 
@@ -32,7 +49,7 @@ function DetailCard({ data, onClose }) {
         {booksRead.length > 0 ? (
           <ul className="book-list">
             {booksRead.map((book, i) => (
-              <li key={i} className="book-item read">{book}</li>
+              <BookItem key={i} book={book} type="read" />
             ))}
           </ul>
         ) : (
@@ -45,7 +62,7 @@ function DetailCard({ data, onClose }) {
         {potentialBooks.length > 0 ? (
           <ul className="book-list">
             {potentialBooks.map((book, i) => (
-              <li key={i} className="book-item potential">{book}</li>
+              <BookItem key={i} book={book} type="potential" />
             ))}
           </ul>
         ) : (

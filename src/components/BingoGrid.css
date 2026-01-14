@@ -17,12 +17,13 @@
 .bingo-layout {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 60px;
   transition: transform 0.3s ease-out;
 }
 
 .bingo-layout.expanded {
-  transform: translateX(-100px);
+  transform: none;
 }
 
 .bingo-card {
@@ -49,4 +50,79 @@
   width: 500px;
   height: 500px;
   overflow: visible;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .bingo-container {
+    padding: 1rem;
+    justify-content: flex-start;
+    padding-top: 2rem;
+  }
+
+  .bingo-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .bingo-layout {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .bingo-layout.expanded {
+    transform: none;
+  }
+
+  .bingo-grid {
+    width: 90vw;
+    height: 90vw;
+    max-width: 500px;
+    max-height: 500px;
+  }
+
+  .bingo-card {
+    /* Disable 3D tilt on mobile */
+    transform: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .bingo-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .bingo-grid {
+    width: 95vw;
+    height: 95vw;
+  }
+}
+
+/* Mobile backdrop */
+.detail-backdrop {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .detail-backdrop {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }
