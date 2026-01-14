@@ -6,7 +6,7 @@ import './BingoGrid.css';
 // Sample data for tiles
 // Books can be strings (title only) or objects with { title, cover }
 const tileData = [
-  { title: "Set During a Historical Crisis", goal: 1, booksRead: [], potentialBooks: [{ title: "Mistborn", cover: null }] },
+  { title: "Set During a Historical Crisis", goal: 1, booksRead: [], potentialBooks: [{ title: "For Whom the Bell Tolls", cover: null }, {title: "", cover: null}] },
   { title: "Living Author Translation", goal: 1, booksRead: [], potentialBooks: [{ title: "Gone Girl", cover: null }, { title: "The Silent Patient", cover: null }] },
   { title: "Poetry Collection", goal: 1, booksRead: [{ title: "Project Hail Mary", cover: null }], potentialBooks: [{ title: "Dune", cover: null }, { title: "Foundation", cover: null }] },
   { title: "Selected by a Friend", goal: 1, booksRead: [], potentialBooks: [{ title: "Beach Read", cover: null }] },
@@ -143,39 +143,46 @@ function BingoGrid({ imageSrc }) {
   }
 
   return (
-    <div className="bingo-container">
-      <h1 className="bingo-title">2026 Book Bingo</h1>
-      <div className={`bingo-layout ${selectedTile !== null ? 'expanded' : ''}`}>
-        <div
-          ref={cardRef}
-          className="bingo-card"
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-          onClick={handleCardClick}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-        >
-          <div className="bingo-grid">
-            {tiles}
+    <>
+      <div className={`bingo-container ${selectedTile !== null && isMobile ? 'shifted' : ''}`}>
+        <h1 className="bingo-title">2026 Book Bingo</h1>
+        <div className={`bingo-layout ${selectedTile !== null ? 'expanded' : ''}`}>
+          <div
+            ref={cardRef}
+            className="bingo-card"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            onClick={handleCardClick}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
+            <div className="bingo-grid">
+              {tiles}
+            </div>
           </div>
-        </div>
-        {selectedTile !== null && (
-          <>
-            {isMobile && (
-              <div
-                className="detail-backdrop"
-                onClick={() => setSelectedTile(null)}
-              />
-            )}
+          {selectedTile !== null && !isMobile && (
             <DetailCard
               key={selectedTile}
               data={tileData[selectedTile]}
               onClose={() => setSelectedTile(null)}
             />
-          </>
-        )}
+          )}
+        </div>
       </div>
-    </div>
+      {selectedTile !== null && isMobile && (
+        <>
+          <div
+            className="detail-backdrop"
+            onClick={() => setSelectedTile(null)}
+          />
+          <DetailCard
+            key={selectedTile}
+            data={tileData[selectedTile]}
+            onClose={() => setSelectedTile(null)}
+          />
+        </>
+      )}
+    </>
   );
 }
 

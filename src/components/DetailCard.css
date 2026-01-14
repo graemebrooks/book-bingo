@@ -241,20 +241,24 @@
     left: 0;
     right: 0;
     width: 100%;
-    max-height: 60vh;
+    max-height: 45vh;
     margin: 0;
-    border-radius: 16px 16px 0 0;
-    padding: 20px;
+    border-radius: 12px 12px 0 0;
+    padding: 16px 20px;
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
     z-index: 1000;
-    animation: slideUp 0.4s ease-out;
+    animation: slideUp 0.4s ease-out forwards;
+    border-top: 1px solid #442222;
+    box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.6);
+    transform: translateY(0);
   }
 
   .detail-card::before {
-    border-radius: 16px 16px 0 0;
+    border-radius: 12px 12px 0 0;
   }
 
   .detail-card::after {
-    border-radius: 16px 16px 0 0;
+    border-radius: 12px 12px 0 0;
   }
 
   @keyframes slideUp {
@@ -267,42 +271,47 @@
   }
 
   .detail-close {
-    font-size: 18px;
+    font-size: 16px;
     padding: 8px;
-    top: 16px;
-    right: 20px;
+    top: 12px;
+    right: 16px;
   }
 
   .detail-title {
-    font-size: 1.3rem;
-    margin-bottom: 20px;
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+  }
+
+  .detail-section {
+    margin-bottom: 16px;
   }
 
   .detail-section h3 {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+    margin-bottom: 8px;
   }
 
   .progress-header {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 
   .progress-bar {
-    font-size: 1rem;
+    font-size: 0.85rem;
   }
 
   .book-item {
-    font-size: 0.9rem;
-    padding: 8px 0;
+    font-size: 0.8rem;
+    padding: 6px 0;
   }
 
   .book-cover,
   .book-cover-placeholder {
-    width: 40px;
-    height: 60px;
+    width: 28px;
+    height: 42px;
   }
 
   .empty-state {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
 }
 
