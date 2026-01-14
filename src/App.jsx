@@ -1,13 +1,12 @@
-import BingoCard from './components/BingoCard'
+import BingoGrid from './components/BingoGrid'
 import './App.css'
 
-// Replace with your actual image path
 import bingoImage from './assets/bingo.png'
 
 function App() {
   return (
     <div className="app">
-      <BingoCard imageSrc={bingoImage} />
+      <BingoGrid imageSrc={bingoImage} />
     </div>
   )
 }

@@ -1,0 +1,173 @@
+.detail-card {
+  background: #0a0a0a;
+  border: 1px solid #440000;
+  padding: 20px 24px;
+  width: 340px;
+  max-height: 500px;
+  overflow-y: auto;
+  position: relative;
+  animation: slideIn 0.3s ease-out;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+  margin-left: 40px;
+  box-shadow:
+    0 0 20px rgba(255, 0, 0, 0.1),
+    0 0 40px rgba(255, 0, 0, 0.05);
+}
+
+.detail-card::before {
+  content: '┌─────────────────────────────────────────┐';
+  position: absolute;
+  top: 4px;
+  left: 8px;
+  color: #ff0000;
+  font-size: 0.7rem;
+  letter-spacing: -1px;
+  pointer-events: none;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.detail-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.detail-close:hover {
+  color: #ff0000;
+}
+
+.detail-title {
+  color: #ff0000;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 8px 0 20px 0;
+  padding-right: 30px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.detail-title::before {
+  content: '> ';
+  color: #ff4444;
+}
+
+.detail-section {
+  margin-bottom: 20px;
+}
+
+.detail-section h3 {
+  color: #ff4444;
+  font-size: 0.75rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin: 0 0 10px 0;
+}
+
+.detail-section h3::before {
+  content: '── ';
+  color: #660000;
+}
+
+.detail-section h3::after {
+  content: ' ──────────────────';
+  color: #660000;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  color: #888;
+  font-size: 0.75rem;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.progress-bar {
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: #ff0000;
+  letter-spacing: 0;
+}
+
+.progress-bar-track {
+  color: #330000;
+}
+
+.progress-bar-fill {
+  color: #ff0000;
+}
+
+.book-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.book-item {
+  padding: 6px 0;
+  font-size: 0.85rem;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.book-item:last-child {
+  border-bottom: none;
+}
+
+.book-item.read {
+  color: #ff6666;
+}
+
+.book-item.read::before {
+  content: '[✓] ';
+  color: #00ff64;
+}
+
+.book-item.potential {
+  color: #666;
+}
+
+.book-item.potential::before {
+  content: '[ ] ';
+  color: #444;
+}
+
+.empty-state {
+  color: #333;
+  font-size: 0.8rem;
+  font-style: italic;
+  margin: 0;
+}
+
+.empty-state::before {
+  content: '// ';
+  color: #440000;
+}
+
+.detail-footer {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #220000;
+  color: #440000;
+  font-size: 0.7rem;
+  text-align: right;
+}

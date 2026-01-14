@@ -1,39 +1,23 @@
-import { useRef } from 'react';
 import './BingoTile.css';
+import doneSticker from '../assets/done_sticker.png';
 
-function BingoTile({ label, index }) {
-  const tileRef = useRef(null);
-
-  const handleMouseMove = (e) => {
-    const tile = tileRef.current;
-    const rect = tile.getBoundingClientRect();
-
-    // Calculate mouse position relative to tile center (-0.5 to 0.5)
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-
-    // Apply rotation (inverted for natural feel)
-    const rotateX = y * -20; // tilt up/down
-    const rotateY = x * 20;  // tilt left/right
-
-    tile.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(30px)`;
-  };
-
-  const handleMouseLeave = (e) => {
-    const tile = tileRef.current;
-    tile.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
-  };
+function BingoTile({ row, col, index, imageSrc, isHovered, isSelected, isDone }) {
+  const backgroundPositionX = `${col * 25}%`;
+  const backgroundPositionY = `${row * 25}%`;
 
   return (
     <div
-      ref={tileRef}
-      className="bingo-tile"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      className={`bingo-tile ${isHovered ? 'hovered' : ''} ${isSelected ? 'selected' : ''}`}
+      style={{
+        backgroundImage: `url(${imageSrc})`,
+        backgroundPosition: `${backgroundPositionX} ${backgroundPositionY}`,
+      }}
     >
-      <div className="tile-content">
-        <span className="tile-label">{label}</span>
-      </div>
+      {isDone && (
+        <div className="sticker">
+          <img src={doneSticker} alt="Done" className="sticker-image" />
+        </div>
+      )}
     </div>
   );
 }
