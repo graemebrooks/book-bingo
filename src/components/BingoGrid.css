@@ -5,6 +5,8 @@
   justify-content: center;
   min-height: 100vh;
   padding: 2rem;
+  position: relative;
+  z-index: 1;
 }
 
 .bingo-title {
@@ -12,6 +14,18 @@
   font-weight: 700;
   margin-bottom: 2rem;
   color: #ff0000;
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+  animation: poleSpin 8s linear infinite;
+  transform-style: preserve-3d;
+}
+
+@keyframes poleSpin {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
 }
 
 .bingo-layout {
@@ -32,15 +46,17 @@
   border-radius: 12px;
   overflow: visible;
   box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.5),
-    0 5px 15px rgba(0, 0, 0, 0.3);
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 50px 100px rgba(0, 0, 0, 0.8),
+    0 30px 60px rgba(0, 0, 0, 0.6);
   flex-shrink: 0;
 }
 
 .bingo-card:hover {
   box-shadow:
-    0 30px 60px rgba(0, 0, 0, 0.6),
-    0 15px 30px rgba(0, 0, 0, 0.4);
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 60px 120px rgba(0, 0, 0, 0.9),
+    0 40px 80px rgba(0, 0, 0, 0.7);
 }
 
 .bingo-grid {
