@@ -145,7 +145,11 @@ function BingoGrid({ imageSrc }) {
   return (
     <>
       <div className={`bingo-container ${selectedTile !== null && isMobile ? 'shifted' : ''}`}>
-        <h1 className="bingo-title">2026 Book Bingo</h1>
+        <h1 className="bingo-title">
+          {'2026 Book Bingo'.split('').map((char, i) => (
+            <span key={i} className={`title-char char-${i}`}>{char === ' ' ? '\u00A0' : char}</span>
+          ))}
+        </h1>
         <div className={`bingo-layout ${selectedTile !== null ? 'expanded' : ''}`}>
           <div
             ref={cardRef}
