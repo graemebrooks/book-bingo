@@ -6,30 +6,95 @@ import './BingoGrid.css';
 // Tile data - books will be filled in later
 // Books use { title, isbn } - covers are fetched from Open Library API
 const tileData = [
-  { title: "Set During a Historical Crisis", color: "#f97316", goal: 1, booksRead: [], potentialBooks: [] },
-  { title: "Living Author Translation", color: "#e5e5e5", goal: 1, booksRead: [], potentialBooks: [] },
-  { title: "Poetry Collection", color: "#3b82f6", goal: 1, booksRead: [], potentialBooks: [] },
+  { title: "Set During a Historical Crisis", color: "#f97316", goal: 1, booksRead: [], potentialBooks: [
+    { title: "2666", author: "Roberto Bolaño", isbn: "9780312429218" },
+    { title: "The Grapes of Wrath", author: "John Steinbeck", isbn: "9780143039433" },
+    { title: "Things Fall Apart", author: "Chinua Achebe", isbn: "9780385474542" }
+  ] },
+  { title: "Living Author Translation", color: "#e5e5e5", goal: 1, booksRead: [], potentialBooks: [
+    { title: "Solenoid", author: "Mircea Cărtărescu", isbn: "9781646052028" }
+  ] },
+  { title: "Poetry Collection", color: "#3b82f6", goal: 1, booksRead: [], potentialBooks: [
+    { title: "The Dream Songs", author: "John Berryman", isbn: "9780374534554" },
+    { title: "Self-Portrait in a Convex Mirror", author: "John Ashbery", isbn: "9780140586688" },
+    { title: "North", author: "Seamus Heaney", isbn: "9780571108138" }
+  ] },
   { title: "Selected by a Friend", color: "#ef4444", goal: 1, booksRead: [], potentialBooks: [] },
-  { title: "Written by Authors from 10 Different Countries", color: "#166534", goal: 10, booksRead: [], potentialBooks: [] },
+  { title: "Written by Authors from 10 Different Countries", color: "#166534", goal: 10, booksRead: [], potentialBooks: [
+    { title: "When I Sing, Mountains Dance", author: "Irene Solà", isbn: "9781644450802" },
+    { title: "Madonna in a Fur Coat", author: "Sabahattin Ali", isbn: "9781590518809" },
+    { title: "Pedro Páramo", author: "Juan Rulfo", isbn: "9780802160935" },
+    { title: "White Nights", author: "Fyodor Dostoevsky", isbn: "9780241252086" }
+  ] },
   { title: "Book Club Selection", color: "#e5e5e5", goal: 1, booksRead: [], potentialBooks: [] },
-  { title: "Horror", color: "#ef4444", goal: 2, booksRead: [], potentialBooks: [], effect: "/effects/horror.gif" },
+  { title: "Horror", color: "#ef4444", goal: 2, booksRead: [], potentialBooks: [
+    { title: "Mexican Gothic", author: "Silvia Moreno-Garcia", isbn: "9780525620808" },
+    { title: "Frankenstein", author: "Mary Shelley", isbn: "9780553212471" },
+    { title: "The Haar", author: "David Sodergren", isbn: "9798800159837" }
+  ], effect: "/effects/horror.gif" },
   { title: "Annotate", color: "#fef3c7", goal: 2, booksRead: [], potentialBooks: [] },
-  { title: "Short Story Collections", color: "#93c5fd", goal: 3, booksRead: [], potentialBooks: [] },
-  { title: "Published 2026", color: "#e5e5e5", goal: 1, booksRead: [], potentialBooks: [] },
-  { title: "Romantasy", color: "#bbf7d0", goal: 1, booksRead: [], potentialBooks: [] },
-  { title: "Reread", color: "#e5e5e5", goal: 1, booksRead: [], potentialBooks: [] },
+  { title: "Short Story Collections", color: "#93c5fd", goal: 3, booksRead: [], potentialBooks: [
+    { title: "Tenth of December", author: "George Saunders", isbn: "9780812984255" },
+    { title: "Orbital", author: "Samantha Harvey", isbn: "9780802161543" },
+    { title: "The Martian Chronicles", author: "Ray Bradbury", isbn: "9781451678192" }
+  ] },
+  { title: "Published 2026", color: "#e5e5e5", goal: 1, booksRead: [], potentialBooks: [
+    { title: "Vigil", author: "George Saunders", isbn: "9780525509622" }
+  ] },
+  { title: "Romantasy", color: "#bbf7d0", goal: 1, booksRead: [], potentialBooks: [
+    { title: "A Court of Mist and Fury", author: "Sarah J. Maas", isbn: "9781635575583" }
+  ] },
+  { title: "Reread", color: "#e5e5e5", goal: 1, booksRead: [], potentialBooks: [
+    { title: "A Swim in a Pond in the Rain", author: "George Saunders", isbn: "9781984856036" },
+    { title: "Foundation", author: "Isaac Asimov", isbn: "9780553293357" },
+    { title: "Annihilation", author: "Jeff VanderMeer", isbn: "9780374104092" }
+  ] },
   { title: "Read 26 in 26", color: "#ef4444", goal: 26, booksRead: [], potentialBooks: [] },
   { title: "Selected at Random", color: "#3b82f6", goal: 1, booksRead: [], potentialBooks: [] },
-  { title: "Longer than 700 Pages", color: "#f9a8d4", goal: 3, booksRead: [], potentialBooks: [] },
-  { title: "Features a Physical Journey", color: "#6ee7b7", goal: 1, booksRead: [], potentialBooks: [] },
-  { title: "Shorter than 200 Pages", color: "#d2b48c", goal: 4, booksRead: [], potentialBooks: [] },
-  { title: "Written by Female Authors", color: "#e5e5e5", goal: 10, booksRead: [], potentialBooks: [] },
+  { title: "Longer than 700 Pages", color: "#f9a8d4", goal: 3, booksRead: [], potentialBooks: [
+    { title: "The Count of Monte Cristo", author: "Alexandre Dumas", isbn: "9780140449266" },
+    { title: "Lonesome Dove", author: "Larry McMurtry", isbn: "9781439195260" },
+    { title: "The Stand", author: "Stephen King", isbn: "9780307743688" }
+  ] },
+  { title: "Features a Physical Journey", color: "#6ee7b7", goal: 1, booksRead: [], potentialBooks: [
+    { title: "The Road", author: "Cormac McCarthy", isbn: "9780307387899" },
+    { title: "The Grapes of Wrath", author: "John Steinbeck", isbn: "9780143039433" },
+    { title: "2666", author: "Roberto Bolaño", isbn: "9780312429218" }
+  ] },
+  { title: "Shorter than 200 Pages", color: "#d2b48c", goal: 4, booksRead: [], potentialBooks: [
+    { title: "Of Mice and Men", author: "John Steinbeck", isbn: "9780140177398" },
+    { title: "Sula", author: "Toni Morrison", isbn: "9781400033430" },
+    { title: "Notes from Underground", author: "Fyodor Dostoevsky", isbn: "9780679734529" }
+  ] },
+  { title: "Written by Female Authors", color: "#e5e5e5", goal: 10, booksRead: [], potentialBooks: [
+    { title: "Katabasis", author: "R.F. Kuang", isbn: "9780063446243" },
+    { title: "Orbital", author: "Samantha Harvey", isbn: "9780802161543" },
+    { title: "Gilead", author: "Marilynne Robinson", isbn: "9780312424404" }
+  ] },
   { title: "By Same Author", color: "#f97316", goal: 3, booksRead: [], potentialBooks: [] },
-  { title: "Philosophy", color: "#facc15", goal: 1, booksRead: [], potentialBooks: [] },
-  { title: "Book on Writing Craft", color: "#c4b5fd", goal: 1, booksRead: [], potentialBooks: [] },
-  { title: "Lonesome Dove!", color: "#ea580c", goal: 1, booksRead: [], potentialBooks: [] },
-  { title: "Controversial+", color: "#ef4444", goal: 1, booksRead: [], potentialBooks: [] },
-  { title: "Nonfiction", color: "#1d4ed8", goal: 3, booksRead: [], potentialBooks: [] },
+  { title: "Philosophy", color: "#facc15", goal: 1, booksRead: [], potentialBooks: [
+    { title: "Fear and Trembling", author: "Søren Kierkegaard", isbn: "9780140444491" },
+    { title: "The Republic", author: "Plato", isbn: "9780140455113" },
+    { title: "The Myth of Sisyphus", author: "Albert Camus", isbn: "9780525564454" }
+  ] },
+  { title: "Book on Writing Craft", color: "#c4b5fd", goal: 1, booksRead: [], potentialBooks: [
+    { title: "The Art of Fiction", author: "John Gardner", isbn: "9780679734031" },
+    { title: "Bird by Bird", author: "Anne Lamott", isbn: "9780385480017" },
+    { title: "The Elements of Style", author: "William Strunk Jr.", isbn: "9780205309023" }
+  ] },
+  { title: "Lonesome Dove!", color: "#ea580c", goal: 1, booksRead: [], potentialBooks: [
+    { title: "Lonesome Dove", author: "Larry McMurtry", isbn: "9781439195260" }
+  ] },
+  { title: "Controversial+", color: "#ef4444", goal: 1, booksRead: [], potentialBooks: [
+    { title: "Lolita", author: "Vladimir Nabokov", isbn: "9780679723165" },
+    { title: "Johnny Got His Gun", author: "Dalton Trumbo", isbn: "9780553274325" }
+  ] },
+  { title: "Nonfiction", color: "#1d4ed8", goal: 3, booksRead: [], potentialBooks: [
+    { title: "The Serviceberry", author: "Robin Wall Kimmerer", isbn: "9781668072240" },
+    { title: "One Day, Everyone Will Have Always Been Against This", author: "Omar El Akkad", isbn: "9781524712815" },
+    { title: "Is a River Alive?", author: "Robert Macfarlane", isbn: "9780393242133" },
+    { title: "A Supposedly Fun Thing I'll Never Do Again", author: "David Foster Wallace", isbn: "9780316925280" }
+  ] },
   { title: "Book Getaway Day: Cover 2 Cover", color: "#f97316", goal: 1, booksRead: [], potentialBooks: [] },
 ];
 
