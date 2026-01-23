@@ -3,6 +3,13 @@ import BingoTile from './BingoTile';
 import DetailCard from './DetailCard';
 import './BingoGrid.css';
 
+// Currently reading book - floats behind the bingo card
+const currentlyReading = {
+  title: "By Night in Chile",
+  author: "Roberto Bolaño",
+  isbn: "9780811215473"
+};
+
 // Tile data - books will be filled in later
 // Books use { title, isbn } - covers are fetched from Open Library API
 const tileData = [
@@ -217,6 +224,23 @@ function BingoGrid({ imageSrc }) {
 
   return (
     <>
+      {/* Floating currently reading book */}
+      <div className="floating-book-container">
+        <div className="floating-book-drift">
+          <div className="floating-book-tumble">
+            <img
+              src={`https://covers.openlibrary.org/b/isbn/${currentlyReading.isbn}-M.jpg`}
+              alt={currentlyReading.title}
+              className="floating-book-cover"
+            />
+            <div className="floating-book-label">
+              <span className="floating-book-status">currently reading</span>
+              <span className="floating-book-title">{currentlyReading.title}</span>
+              <span className="floating-book-author">{currentlyReading.author}</span>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className={`bingo-container ${selectedTile !== null && isMobile ? 'shifted' : ''}`}>
         <h1
           className="bingo-title"

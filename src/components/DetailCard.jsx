@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import './DetailCard.css';
 
 // Generate Open Library cover URL from ISBN
@@ -20,20 +22,100 @@ function getDarkBackground(hex) {
   return `rgb(${darkR}, ${darkG}, ${darkB})`;
 }
 
+function BookCover({ isbn, title, author }) {
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+  const [isMagnified, setIsMagnified] = useState(false);
+  const [largeLoading, setLargeLoading] = useState(true);
+  const [preloaded, setPreloaded] = useState(false);
+  const coverUrl = getCoverUrl(isbn);
+  const largeCoverUrl = coverUrl?.replace('-M.jpg', '-L.jpg');
+
+  // Check if image loaded is the "no cover" placeholder (1x1 pixel)
+  const handleLoad = (e) => {
+    // Open Library returns a tiny image when no cover exists
+    if (e.target.naturalWidth <= 1 || e.target.naturalHeight <= 1) {
+      setHasError(true);
+    }
+    setIsLoading(false);
+  };
+
+  // Preload large image on hover
+  const handleMouseEnter = () => {
+    if (!preloaded && largeCoverUrl) {
+      const img = new Image();
+      img.src = largeCoverUrl;
+      img.onload = () => setPreloaded(true);
+    }
+  };
+
+  const handleMagnify = () => {
+    setLargeLoading(!preloaded);
+    setIsMagnified(true);
+  };
+
+  if (!coverUrl || hasError) {
+    return (
+      <div className="book-cover-fallback">
+        <span className="fallback-title">{title}</span>
+        {author && <span className="fallback-author">{author}</span>}
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <div className="book-cover-wrapper" onClick={handleMagnify} onMouseEnter={handleMouseEnter}>
+        {isLoading && <div className="book-cover-skeleton" />}
+        <img
+          src={coverUrl}
+          alt={title}
+          className={`book-cover ${isLoading ? 'loading' : ''}`}
+          onLoad={handleLoad}
+          onError={() => {
+            setIsLoading(false);
+            setHasError(true);
+          }}
+        />
+        {!isLoading && (
+          <div className="magnify-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="11" cy="11" r="8" />
+              <path d="M21 21l-4.35-4.35" />
+            </svg>
+          </div>
+        )}
+      </div>
+      {isMagnified && createPortal(
+        <div className="magnify-overlay" onClick={() => setIsMagnified(false)}>
+          {largeLoading && <div className="magnified-skeleton" />}
+          <img
+            src={largeCoverUrl}
+            alt={title}
+            className={`magnified-cover ${largeLoading ? 'loading' : ''}`}
+            onLoad={() => setLargeLoading(false)}
+          />
+          <span className="magnify-hint">click anywhere to close</span>
+        </div>,
+        document.body
+      )}
+    </>
+  );
+}
+
 function BookItem({ book, type }) {
   // Handle both string format and object format
   const title = typeof book === 'string' ? book : book.title;
+  const author = typeof book === 'object' ? book.author : null;
   const isbn = typeof book === 'object' ? book.isbn : null;
-  const coverUrl = getCoverUrl(isbn);
 
   return (
     <li className={`book-item ${type}`}>
-      {coverUrl ? (
-        <img src={coverUrl} alt={title} className="book-cover" />
-      ) : (
-        <div className="book-cover-placeholder" />
-      )}
-      <span className="book-title">{title}</span>
+      <BookCover isbn={isbn} title={title} author={author} />
+      <div className="book-info">
+        <span className="book-title">{title}</span>
+        {author && <span className="book-author">{author}</span>}
+      </div>
     </li>
   );
 }
