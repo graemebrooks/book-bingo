@@ -27,7 +27,9 @@ const tileData = [
     { title: "North", author: "Seamus Heaney", isbn: "9780571108138" }
   ] },
   { title: "Selected by a Friend", color: "#ef4444", goal: 1, booksRead: [], potentialBooks: [] },
-  { title: "Written by Authors from 10 Different Countries", color: "#166534", goal: 10, booksRead: [], potentialBooks: [
+  { title: "Written by Authors from 10 Different Countries", color: "#166534", goal: 10, booksRead: [
+    { title: "By Night in Chile", author: "Roberto Bolaño", isbn: "9780811215473", country: "Chile" }
+  ], potentialBooks: [
     { title: "When I Sing, Mountains Dance", author: "Irene Solà", isbn: "9781644450802" },
     { title: "Madonna in a Fur Coat", author: "Sabahattin Ali", isbn: "9781590518809" },
     { title: "Pedro Páramo", author: "Juan Rulfo", isbn: "9780802160935" },
@@ -56,7 +58,9 @@ const tileData = [
     { title: "Foundation", author: "Isaac Asimov", isbn: "9780553293357" },
     { title: "Annihilation", author: "Jeff VanderMeer", isbn: "9780374104092" }
   ] },
-  { title: "Read 26 in 26", color: "#ef4444", goal: 26, booksRead: [], potentialBooks: [] },
+  { title: "Read 26 in 26", color: "#ef4444", goal: 26, booksRead: [
+    { title: "By Night in Chile", author: "Roberto Bolaño", isbn: "9780811215473" }
+  ], potentialBooks: [] },
   { title: "Selected at Random", color: "#3b82f6", goal: 1, booksRead: [], potentialBooks: [] },
   { title: "Longer than 700 Pages", color: "#f9a8d4", goal: 3, booksRead: [], potentialBooks: [
     { title: "The Count of Monte Cristo", author: "Alexandre Dumas", isbn: "9780140449266" },
@@ -68,7 +72,9 @@ const tileData = [
     { title: "The Grapes of Wrath", author: "John Steinbeck", isbn: "9780143039433" },
     { title: "2666", author: "Roberto Bolaño", isbn: "9780312429218" }
   ] },
-  { title: "Shorter than 200 Pages", color: "#d2b48c", goal: 4, booksRead: [], potentialBooks: [
+  { title: "Shorter than 200 Pages", color: "#d2b48c", goal: 4, booksRead: [
+    { title: "By Night in Chile", author: "Roberto Bolaño", isbn: "9780811215473" }
+  ], potentialBooks: [
     { title: "Of Mice and Men", author: "John Steinbeck", isbn: "9780140177398" },
     { title: "Sula", author: "Toni Morrison", isbn: "9781400033430" },
     { title: "Notes from Underground", author: "Fyodor Dostoevsky", isbn: "9780679734529" }
@@ -92,7 +98,7 @@ const tileData = [
   { title: "Lonesome Dove!", color: "#ea580c", goal: 1, booksRead: [], potentialBooks: [
     { title: "Lonesome Dove", author: "Larry McMurtry", isbn: "9781439195260" }
   ] },
-  { title: "Controversial+", color: "#ef4444", goal: 1, booksRead: [], potentialBooks: [
+  { title: "Controversial", color: "#ef4444", goal: 1, booksRead: [], potentialBooks: [
     { title: "Lolita", author: "Vladimir Nabokov", isbn: "9780679723165" },
     { title: "Johnny Got His Gun", author: "Dalton Trumbo", isbn: "9780553274325" }
   ] },
