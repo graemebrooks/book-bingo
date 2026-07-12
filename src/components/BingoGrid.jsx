@@ -5,15 +5,18 @@ import './BingoGrid.css';
 
 // Currently reading book - floats behind the bingo card
 const currentlyReading = {
-  title: "By Night in Chile",
-  author: "Roberto Bolaño",
-  isbn: "9780811215473"
+  title: "Olive Kitteridge",
+  author: "Elizabeth Strout",
+  isbn: "9780812971835"
 };
 
 // Tile data - books will be filled in later
 // Books use { title, isbn } - covers are fetched from Open Library API
 const tileData = [
-  { title: "Set During a Historical Crisis", color: "#f97316", goal: 1, booksRead: [], potentialBooks: [
+  { title: "Set During a Historical Crisis", color: "#f97316", goal: 1, booksRead: [
+    { title: "For Whom the Bell Tolls", author: "Ernest Hemingway", isbn: "9780684803357" },
+    { title: "Angel Down", author: "Daniel Kraus", isbn: "9781668068458" }
+  ], potentialBooks: [
     { title: "2666", author: "Roberto Bolaño", isbn: "9780312429218" },
     { title: "The Grapes of Wrath", author: "John Steinbeck", isbn: "9780143039433" },
     { title: "Things Fall Apart", author: "Chinua Achebe", isbn: "9780385474542" }
@@ -28,7 +31,10 @@ const tileData = [
   ] },
   { title: "Selected by a Friend", color: "#ef4444", goal: 1, booksRead: [], potentialBooks: [] },
   { title: "Written by Authors from 10 Different Countries", color: "#166534", goal: 10, booksRead: [
-    { title: "By Night in Chile", author: "Roberto Bolaño", isbn: "9780811215473", country: "Chile" }
+    { title: "By Night in Chile", author: "Roberto Bolaño", isbn: "9780811215473", country: "Chile" },
+    { title: "North Woods", author: "Daniel Mason", isbn: "9780593461709", country: "USA" },
+    { title: "The Count of Monte Cristo", author: "Alexandre Dumas", isbn: "9780140449266", country: "France" },
+    { title: "How to Build a Car", author: "Adrian Newey", isbn: "9780008338435", country: "UK" }
   ], potentialBooks: [
     { title: "When I Sing, Mountains Dance", author: "Irene Solà", isbn: "9781644450802" },
     { title: "Madonna in a Fur Coat", author: "Sabahattin Ali", isbn: "9781590518809" },
@@ -36,13 +42,19 @@ const tileData = [
     { title: "White Nights", author: "Fyodor Dostoevsky", isbn: "9780241252086" }
   ] },
   { title: "Book Club Selection", color: "#e5e5e5", goal: 1, booksRead: [], potentialBooks: [] },
-  { title: "Horror", color: "#ef4444", goal: 2, booksRead: [], potentialBooks: [
+  { title: "Horror", color: "#ef4444", goal: 2, booksRead: [
+    { title: "The Regulators", author: "Stephen King (as Richard Bachman)", isbn: "9780451191014" },
+    { title: "Desperation", author: "Stephen King", isbn: "9780670868360" },
+    { title: "Skeleton Crew", author: "Stephen King", isbn: "9781501143502" }
+  ], potentialBooks: [
     { title: "Mexican Gothic", author: "Silvia Moreno-Garcia", isbn: "9780525620808" },
     { title: "Frankenstein", author: "Mary Shelley", isbn: "9780553212471" },
     { title: "The Haar", author: "David Sodergren", isbn: "9798800159837" }
   ], effect: "/effects/horror.gif" },
   { title: "Annotate", color: "#fef3c7", goal: 2, booksRead: [], potentialBooks: [] },
-  { title: "Short Story Collections", color: "#93c5fd", goal: 3, booksRead: [], potentialBooks: [
+  { title: "Short Story Collections", color: "#93c5fd", goal: 3, booksRead: [
+    { title: "Skeleton Crew", author: "Stephen King", isbn: "9781501143502" }
+  ], potentialBooks: [
     { title: "Tenth of December", author: "George Saunders", isbn: "9780812984255" },
     { title: "Orbital", author: "Samantha Harvey", isbn: "9780802161543" },
     { title: "The Martian Chronicles", author: "Ray Bradbury", isbn: "9781451678192" }
@@ -59,11 +71,22 @@ const tileData = [
     { title: "Annihilation", author: "Jeff VanderMeer", isbn: "9780374104092" }
   ] },
   { title: "Read 26 in 26", color: "#ef4444", goal: 26, booksRead: [
-    { title: "By Night in Chile", author: "Roberto Bolaño", isbn: "9780811215473" }
+    { title: "By Night in Chile", author: "Roberto Bolaño", isbn: "9780811215473" },
+    { title: "North Woods", author: "Daniel Mason", isbn: "9780593461709" },
+    { title: "The Inner Game of Tennis", author: "W. Timothy Gallwey", isbn: "9780679778318" },
+    { title: "How to Build a Car", author: "Adrian Newey", isbn: "9780008338435" },
+    { title: "The Regulators", author: "Stephen King (as Richard Bachman)", isbn: "9780451191014" },
+    { title: "Desperation", author: "Stephen King", isbn: "9780670868360" },
+    { title: "For Whom the Bell Tolls", author: "Ernest Hemingway", isbn: "9780684803357" },
+    { title: "Angel Down", author: "Daniel Kraus", isbn: "9781668068458" },
+    { title: "Bird by Bird", author: "Anne Lamott", isbn: "9780385480017" },
+    { title: "The Count of Monte Cristo", author: "Alexandre Dumas", isbn: "9780140449266" },
+    { title: "Skeleton Crew", author: "Stephen King", isbn: "9781501143502" }
   ], potentialBooks: [] },
   { title: "Selected at Random", color: "#3b82f6", goal: 1, booksRead: [], potentialBooks: [] },
-  { title: "Longer than 700 Pages", color: "#f9a8d4", goal: 3, booksRead: [], potentialBooks: [
-    { title: "The Count of Monte Cristo", author: "Alexandre Dumas", isbn: "9780140449266" },
+  { title: "Longer than 700 Pages", color: "#f9a8d4", goal: 3, booksRead: [
+    { title: "The Count of Monte Cristo", author: "Alexandre Dumas", isbn: "9780140449266" }
+  ], potentialBooks: [
     { title: "Lonesome Dove", author: "Larry McMurtry", isbn: "9781439195260" },
     { title: "The Stand", author: "Stephen King", isbn: "9780307743688" }
   ] },
@@ -73,26 +96,34 @@ const tileData = [
     { title: "2666", author: "Roberto Bolaño", isbn: "9780312429218" }
   ] },
   { title: "Shorter than 200 Pages", color: "#d2b48c", goal: 4, booksRead: [
-    { title: "By Night in Chile", author: "Roberto Bolaño", isbn: "9780811215473" }
+    { title: "By Night in Chile", author: "Roberto Bolaño", isbn: "9780811215473" },
+    { title: "The Inner Game of Tennis", author: "W. Timothy Gallwey", isbn: "9780679778318" }
   ], potentialBooks: [
     { title: "Of Mice and Men", author: "John Steinbeck", isbn: "9780140177398" },
     { title: "Sula", author: "Toni Morrison", isbn: "9781400033430" },
     { title: "Notes from Underground", author: "Fyodor Dostoevsky", isbn: "9780679734529" }
   ] },
-  { title: "Written by Female Authors", color: "#e5e5e5", goal: 10, booksRead: [], potentialBooks: [
+  { title: "Written by Female Authors", color: "#e5e5e5", goal: 10, booksRead: [
+    { title: "Bird by Bird", author: "Anne Lamott", isbn: "9780385480017" }
+  ], potentialBooks: [
     { title: "Katabasis", author: "R.F. Kuang", isbn: "9780063446243" },
     { title: "Orbital", author: "Samantha Harvey", isbn: "9780802161543" },
     { title: "Gilead", author: "Marilynne Robinson", isbn: "9780312424404" }
   ] },
-  { title: "By Same Author", color: "#f97316", goal: 3, booksRead: [], potentialBooks: [] },
+  { title: "By Same Author", color: "#f97316", goal: 3, booksRead: [
+    { title: "The Regulators", author: "Stephen King (as Richard Bachman)", isbn: "9780451191014" },
+    { title: "Desperation", author: "Stephen King", isbn: "9780670868360" },
+    { title: "Skeleton Crew", author: "Stephen King", isbn: "9781501143502" }
+  ], potentialBooks: [] },
   { title: "Philosophy", color: "#facc15", goal: 1, booksRead: [], potentialBooks: [
     { title: "Fear and Trembling", author: "Søren Kierkegaard", isbn: "9780140444491" },
     { title: "The Republic", author: "Plato", isbn: "9780140455113" },
     { title: "The Myth of Sisyphus", author: "Albert Camus", isbn: "9780525564454" }
   ] },
-  { title: "Book on Writing Craft", color: "#c4b5fd", goal: 1, booksRead: [], potentialBooks: [
+  { title: "Book on Writing Craft", color: "#c4b5fd", goal: 1, booksRead: [
+    { title: "Bird by Bird", author: "Anne Lamott", isbn: "9780385480017" }
+  ], potentialBooks: [
     { title: "The Art of Fiction", author: "John Gardner", isbn: "9780679734031" },
-    { title: "Bird by Bird", author: "Anne Lamott", isbn: "9780385480017" },
     { title: "The Elements of Style", author: "William Strunk Jr.", isbn: "9780205309023" }
   ] },
   { title: "Lonesome Dove!", color: "#ea580c", goal: 1, booksRead: [], potentialBooks: [
@@ -102,7 +133,11 @@ const tileData = [
     { title: "Lolita", author: "Vladimir Nabokov", isbn: "9780679723165" },
     { title: "Johnny Got His Gun", author: "Dalton Trumbo", isbn: "9780553274325" }
   ] },
-  { title: "Nonfiction", color: "#1d4ed8", goal: 3, booksRead: [], potentialBooks: [
+  { title: "Nonfiction", color: "#1d4ed8", goal: 3, booksRead: [
+    { title: "The Inner Game of Tennis", author: "W. Timothy Gallwey", isbn: "9780679778318" },
+    { title: "How to Build a Car", author: "Adrian Newey", isbn: "9780008338435" },
+    { title: "Bird by Bird", author: "Anne Lamott", isbn: "9780385480017" }
+  ], potentialBooks: [
     { title: "The Serviceberry", author: "Robin Wall Kimmerer", isbn: "9781668072240" },
     { title: "One Day, Everyone Will Have Always Been Against This", author: "Omar El Akkad", isbn: "9781524712815" },
     { title: "Is a River Alive?", author: "Robert Macfarlane", isbn: "9780393242133" },
@@ -205,8 +240,10 @@ function BingoGrid({ imageSrc }) {
     setTimeout(() => setHoveredTile(null), 300);
   };
 
-  // Test stickers
-  const doneTiles = [5, 12];
+  // Tiles whose reading goal has been met
+  const doneTiles = tileData
+    .map((tile, i) => (tile.booksRead.length >= tile.goal ? i : null))
+    .filter((i) => i !== null);
 
   // Generate 5x5 grid of tiles
   const tiles = [];
@@ -231,22 +268,24 @@ function BingoGrid({ imageSrc }) {
   return (
     <>
       {/* Floating currently reading book */}
-      <div className="floating-book-container">
-        <div className="floating-book-drift">
-          <div className="floating-book-tumble">
-            <img
-              src={`https://covers.openlibrary.org/b/isbn/${currentlyReading.isbn}-M.jpg`}
-              alt={currentlyReading.title}
-              className="floating-book-cover"
-            />
-            <div className="floating-book-label">
-              <span className="floating-book-status">currently reading</span>
-              <span className="floating-book-title">{currentlyReading.title}</span>
-              <span className="floating-book-author">{currentlyReading.author}</span>
+      {currentlyReading && (
+        <div className="floating-book-container">
+          <div className="floating-book-drift">
+            <div className="floating-book-tumble">
+              <img
+                src={`https://covers.openlibrary.org/b/isbn/${currentlyReading.isbn}-M.jpg`}
+                alt={currentlyReading.title}
+                className="floating-book-cover"
+              />
+              <div className="floating-book-label">
+                <span className="floating-book-status">currently reading</span>
+                <span className="floating-book-title">{currentlyReading.title}</span>
+                <span className="floating-book-author">{currentlyReading.author}</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
       <div className={`bingo-container ${selectedTile !== null && isMobile ? 'shifted' : ''}`}>
         <h1
           className="bingo-title"

@@ -125,7 +125,7 @@ function DetailCard({ data, onClose }) {
 
   // ASCII progress bar with separate spans for styling
   const barLength = 20;
-  const filled = Math.round((booksRead.length / goal) * barLength);
+  const filled = Math.min(barLength, Math.round((booksRead.length / goal) * barLength));
   const empty = barLength - filled;
 
   // Use tile color as accent, with CSS custom property
