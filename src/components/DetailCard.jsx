@@ -2,6 +2,14 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import './DetailCard.css';
 
+// Flag emoji for author countries (10 countries tile)
+const COUNTRY_FLAGS = {
+  USA: '🇺🇸', UK: '🇬🇧', Chile: '🇨🇱', France: '🇫🇷', Spain: '🇪🇸',
+  Turkey: '🇹🇷', Mexico: '🇲🇽', Russia: '🇷🇺', Ireland: '🇮🇪', Italy: '🇮🇹',
+  Germany: '🇩🇪', Japan: '🇯🇵', Canada: '🇨🇦', Argentina: '🇦🇷', Colombia: '🇨🇴',
+  Norway: '🇳🇴', Poland: '🇵🇱', Nigeria: '🇳🇬', India: '🇮🇳', 'South Korea': '🇰🇷',
+};
+
 // Generate Open Library cover URL from ISBN
 function getCoverUrl(isbn) {
   if (!isbn) return null;
@@ -108,6 +116,7 @@ function BookItem({ book, type }) {
   const title = typeof book === 'string' ? book : book.title;
   const author = typeof book === 'object' ? book.author : null;
   const isbn = typeof book === 'object' ? book.isbn : null;
+  const country = typeof book === 'object' ? book.country : null;
 
   return (
     <li className={`book-item ${type}`}>
@@ -115,6 +124,12 @@ function BookItem({ book, type }) {
       <div className="book-info">
         <span className="book-title">{title}</span>
         {author && <span className="book-author">{author}</span>}
+        {country && (
+          <span className="book-country">
+            {COUNTRY_FLAGS[country] && <span className="book-country-flag">{COUNTRY_FLAGS[country]}</span>}
+            {country}
+          </span>
+        )}
       </div>
     </li>
   );
@@ -131,8 +146,8 @@ function DetailCard({ data, onClose }) {
   // Use tile color as accent, with CSS custom property
   const cardStyle = {
     '--accent-color': color || '#dd3333',
-    '--accent-glow': `${color}66` || '#dd333366',
-    '--accent-dim': `${color}33` || '#dd333333',
+    '--accent-glow': color ? `${color}66` : '#dd333366',
+    '--accent-dim': color ? `${color}33` : '#dd333333',
     '--accent-bg': getDarkBackground(color),
   };
 

@@ -422,6 +422,21 @@
   opacity: 0.8;
 }
 
+.book-country {
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.book-country-flag {
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
 .book-item.read .book-cover-placeholder {
   border-color: var(--accent-glow);
 }

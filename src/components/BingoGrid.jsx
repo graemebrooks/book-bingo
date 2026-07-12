@@ -36,10 +36,10 @@ const tileData = [
     { title: "The Count of Monte Cristo", author: "Alexandre Dumas", isbn: "9780140449266", country: "France" },
     { title: "How to Build a Car", author: "Adrian Newey", isbn: "9780008338435", country: "UK" }
   ], potentialBooks: [
-    { title: "When I Sing, Mountains Dance", author: "Irene Solà", isbn: "9781644450802" },
-    { title: "Madonna in a Fur Coat", author: "Sabahattin Ali", isbn: "9781590518809" },
-    { title: "Pedro Páramo", author: "Juan Rulfo", isbn: "9780802160935" },
-    { title: "White Nights", author: "Fyodor Dostoevsky", isbn: "9780241252086" }
+    { title: "When I Sing, Mountains Dance", author: "Irene Solà", isbn: "9781644450802", country: "Spain" },
+    { title: "Madonna in a Fur Coat", author: "Sabahattin Ali", isbn: "9781590518809", country: "Turkey" },
+    { title: "Pedro Páramo", author: "Juan Rulfo", isbn: "9780802160935", country: "Mexico" },
+    { title: "White Nights", author: "Fyodor Dostoevsky", isbn: "9780241252086", country: "Russia" }
   ] },
   { title: "Book Club Selection", color: "#e5e5e5", goal: 1, booksRead: [], potentialBooks: [] },
   { title: "Horror", color: "#ef4444", goal: 2, booksRead: [
