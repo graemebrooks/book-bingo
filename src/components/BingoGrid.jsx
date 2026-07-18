@@ -25,7 +25,9 @@ const tileData = [
     { title: "Self-Portrait in a Convex Mirror", author: "John Ashbery", isbn: "9780140586688" },
     { title: "North", author: "Seamus Heaney", isbn: "9780571108138" }
   ] },
-  { title: "Selected by a Friend", color: "#ef4444", goal: 1, booksRead: [], potentialBooks: [] },
+  { title: "Selected by a Friend", color: "#ef4444", goal: 1, booksRead: [
+    { title: "The Hunger Games", author: "Suzanne Collins", isbn: "9780439023481" }
+  ], potentialBooks: [] },
   { title: "Written by Authors from 10 Different Countries", color: "#166534", goal: 10, booksRead: [
     { title: "By Night in Chile", author: "Roberto Bolaño", isbn: "9780811215473", country: "Chile" },
     { title: "North Woods", author: "Daniel Mason", isbn: "9780593461709", country: "USA" },
@@ -78,7 +80,8 @@ const tileData = [
     { title: "Bird by Bird", author: "Anne Lamott", isbn: "9780385480017" },
     { title: "The Count of Monte Cristo", author: "Alexandre Dumas", isbn: "9780140449266" },
     { title: "Skeleton Crew", author: "Stephen King", isbn: "9781501143502" },
-    { title: "Olive Kitteridge", author: "Elizabeth Strout", isbn: "9780812971835" }
+    { title: "Olive Kitteridge", author: "Elizabeth Strout", isbn: "9780812971835" },
+    { title: "The Hunger Games", author: "Suzanne Collins", isbn: "9780439023481" }
   ], potentialBooks: [] },
   { title: "Selected at Random", color: "#3b82f6", goal: 1, booksRead: [], potentialBooks: [] },
   { title: "Longer than 700 Pages", color: "#f9a8d4", goal: 3, booksRead: [
@@ -102,7 +105,8 @@ const tileData = [
   ] },
   { title: "Written by Female Authors", color: "#e5e5e5", goal: 10, booksRead: [
     { title: "Bird by Bird", author: "Anne Lamott", isbn: "9780385480017" },
-    { title: "Olive Kitteridge", author: "Elizabeth Strout", isbn: "9780812971835" }
+    { title: "Olive Kitteridge", author: "Elizabeth Strout", isbn: "9780812971835" },
+    { title: "The Hunger Games", author: "Suzanne Collins", isbn: "9780439023481" }
   ], potentialBooks: [
     { title: "Katabasis", author: "R.F. Kuang", isbn: "9780063446243" },
     { title: "Orbital", author: "Samantha Harvey", isbn: "9780802161543" },
