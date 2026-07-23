@@ -4,7 +4,11 @@ import DetailCard from './DetailCard';
 import './BingoGrid.css';
 
 // Currently reading book - floats behind the bingo card
-const currentlyReading = null;
+const currentlyReading = {
+  title: "White Nights",
+  author: "Fyodor Dostoevsky",
+  isbn: "9780241252086"
+};
 
 // Tile data - books will be filled in later
 // Books use { title, isbn } - covers are fetched from Open Library API
@@ -81,7 +85,9 @@ const tileData = [
     { title: "The Count of Monte Cristo", author: "Alexandre Dumas", isbn: "9780140449266" },
     { title: "Skeleton Crew", author: "Stephen King", isbn: "9781501143502" },
     { title: "Olive Kitteridge", author: "Elizabeth Strout", isbn: "9780812971835" },
-    { title: "The Hunger Games", author: "Suzanne Collins", isbn: "9780439023481" }
+    { title: "The Hunger Games", author: "Suzanne Collins", isbn: "9780439023481" },
+    { title: "Catching Fire", author: "Suzanne Collins", isbn: "9780439023498" },
+    { title: "Mockingjay", author: "Suzanne Collins", isbn: "9780439023511" }
   ], potentialBooks: [] },
   { title: "Selected at Random", color: "#3b82f6", goal: 1, booksRead: [], potentialBooks: [] },
   { title: "Longer than 700 Pages", color: "#f9a8d4", goal: 3, booksRead: [
@@ -106,7 +112,9 @@ const tileData = [
   { title: "Written by Female Authors", color: "#e5e5e5", goal: 10, booksRead: [
     { title: "Bird by Bird", author: "Anne Lamott", isbn: "9780385480017" },
     { title: "Olive Kitteridge", author: "Elizabeth Strout", isbn: "9780812971835" },
-    { title: "The Hunger Games", author: "Suzanne Collins", isbn: "9780439023481" }
+    { title: "The Hunger Games", author: "Suzanne Collins", isbn: "9780439023481" },
+    { title: "Catching Fire", author: "Suzanne Collins", isbn: "9780439023498" },
+    { title: "Mockingjay", author: "Suzanne Collins", isbn: "9780439023511" }
   ], potentialBooks: [
     { title: "Katabasis", author: "R.F. Kuang", isbn: "9780063446243" },
     { title: "Orbital", author: "Samantha Harvey", isbn: "9780802161543" },
