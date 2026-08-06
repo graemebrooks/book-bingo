@@ -21,7 +21,9 @@ const tileData = [
     { title: "The Grapes of Wrath", author: "John Steinbeck", isbn: "9780143039433" },
     { title: "Things Fall Apart", author: "Chinua Achebe", isbn: "9780385474542" }
   ] },
-  { title: "Living Author Translation", color: "#e5e5e5", goal: 1, booksRead: [], potentialBooks: [
+  { title: "Living Author Translation", color: "#e5e5e5", goal: 1, booksRead: [
+    { title: "Convenience Store Woman", author: "Sayaka Murata", isbn: "9780802128256" }
+  ], potentialBooks: [
     { title: "Solenoid", author: "Mircea Cărtărescu", isbn: "9781646052028" }
   ] },
   { title: "Poetry Collection", color: "#3b82f6", goal: 1, booksRead: [], potentialBooks: [
@@ -36,7 +38,8 @@ const tileData = [
     { title: "By Night in Chile", author: "Roberto Bolaño", isbn: "9780811215473", country: "Chile" },
     { title: "North Woods", author: "Daniel Mason", isbn: "9780593461709", country: "USA" },
     { title: "The Count of Monte Cristo", author: "Alexandre Dumas", isbn: "9780140449266", country: "France" },
-    { title: "How to Build a Car", author: "Adrian Newey", isbn: "9780008338435", country: "UK" }
+    { title: "How to Build a Car", author: "Adrian Newey", isbn: "9780008338435", country: "UK" },
+    { title: "Convenience Store Woman", author: "Sayaka Murata", isbn: "9780802128256", country: "Japan" }
   ], potentialBooks: [
     { title: "When I Sing, Mountains Dance", author: "Irene Solà", isbn: "9781644450802", country: "Spain" },
     { title: "Madonna in a Fur Coat", author: "Sabahattin Ali", isbn: "9781590518809", country: "Turkey" },
@@ -87,23 +90,28 @@ const tileData = [
     { title: "Olive Kitteridge", author: "Elizabeth Strout", isbn: "9780812971835" },
     { title: "The Hunger Games", author: "Suzanne Collins", isbn: "9780439023481" },
     { title: "Catching Fire", author: "Suzanne Collins", isbn: "9780439023498" },
-    { title: "Mockingjay", author: "Suzanne Collins", isbn: "9780439023511" }
+    { title: "Mockingjay", author: "Suzanne Collins", isbn: "9780439023511" },
+    { title: "Lonesome Dove", author: "Larry McMurtry", isbn: "9781439195260" },
+    { title: "Convenience Store Woman", author: "Sayaka Murata", isbn: "9780802128256" }
   ], potentialBooks: [] },
   { title: "Selected at Random", color: "#3b82f6", goal: 1, booksRead: [], potentialBooks: [] },
   { title: "Longer than 700 Pages", color: "#f9a8d4", goal: 3, booksRead: [
-    { title: "The Count of Monte Cristo", author: "Alexandre Dumas", isbn: "9780140449266" }
+    { title: "The Count of Monte Cristo", author: "Alexandre Dumas", isbn: "9780140449266" },
+    { title: "Lonesome Dove", author: "Larry McMurtry", isbn: "9781439195260" }
   ], potentialBooks: [
-    { title: "Lonesome Dove", author: "Larry McMurtry", isbn: "9781439195260" },
     { title: "The Stand", author: "Stephen King", isbn: "9780307743688" }
   ] },
-  { title: "Features a Physical Journey", color: "#6ee7b7", goal: 1, booksRead: [], potentialBooks: [
+  { title: "Features a Physical Journey", color: "#6ee7b7", goal: 1, booksRead: [
+    { title: "Lonesome Dove", author: "Larry McMurtry", isbn: "9781439195260" }
+  ], potentialBooks: [
     { title: "The Road", author: "Cormac McCarthy", isbn: "9780307387899" },
     { title: "The Grapes of Wrath", author: "John Steinbeck", isbn: "9780143039433" },
     { title: "2666", author: "Roberto Bolaño", isbn: "9780312429218" }
   ] },
   { title: "Shorter than 200 Pages", color: "#d2b48c", goal: 4, booksRead: [
     { title: "By Night in Chile", author: "Roberto Bolaño", isbn: "9780811215473" },
-    { title: "The Inner Game of Tennis", author: "W. Timothy Gallwey", isbn: "9780679778318" }
+    { title: "The Inner Game of Tennis", author: "W. Timothy Gallwey", isbn: "9780679778318" },
+    { title: "Convenience Store Woman", author: "Sayaka Murata", isbn: "9780802128256" }
   ], potentialBooks: [
     { title: "Of Mice and Men", author: "John Steinbeck", isbn: "9780140177398" },
     { title: "Sula", author: "Toni Morrison", isbn: "9781400033430" },
@@ -114,7 +122,8 @@ const tileData = [
     { title: "Olive Kitteridge", author: "Elizabeth Strout", isbn: "9780812971835" },
     { title: "The Hunger Games", author: "Suzanne Collins", isbn: "9780439023481" },
     { title: "Catching Fire", author: "Suzanne Collins", isbn: "9780439023498" },
-    { title: "Mockingjay", author: "Suzanne Collins", isbn: "9780439023511" }
+    { title: "Mockingjay", author: "Suzanne Collins", isbn: "9780439023511" },
+    { title: "Convenience Store Woman", author: "Sayaka Murata", isbn: "9780802128256" }
   ], potentialBooks: [
     { title: "Katabasis", author: "R.F. Kuang", isbn: "9780063446243" },
     { title: "Orbital", author: "Samantha Harvey", isbn: "9780802161543" },
@@ -136,9 +145,9 @@ const tileData = [
     { title: "The Art of Fiction", author: "John Gardner", isbn: "9780679734031" },
     { title: "The Elements of Style", author: "William Strunk Jr.", isbn: "9780205309023" }
   ] },
-  { title: "Lonesome Dove!", color: "#ea580c", goal: 1, booksRead: [], potentialBooks: [
+  { title: "Lonesome Dove!", color: "#ea580c", goal: 1, booksRead: [
     { title: "Lonesome Dove", author: "Larry McMurtry", isbn: "9781439195260" }
-  ] },
+  ], potentialBooks: [] },
   { title: "Controversial", color: "#ef4444", goal: 1, booksRead: [], potentialBooks: [
     { title: "Lolita", author: "Vladimir Nabokov", isbn: "9780679723165" },
     { title: "Johnny Got His Gun", author: "Dalton Trumbo", isbn: "9780553274325" }
