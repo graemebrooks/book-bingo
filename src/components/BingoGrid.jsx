@@ -50,7 +50,9 @@ const tileData = [
   { title: "Horror", color: "#ef4444", goal: 2, booksRead: [
     { title: "The Regulators", author: "Stephen King (as Richard Bachman)", isbn: "9780451191014" },
     { title: "Desperation", author: "Stephen King", isbn: "9780670868360" },
-    { title: "Skeleton Crew", author: "Stephen King", isbn: "9781501143502" }
+    { title: "Skeleton Crew", author: "Stephen King", isbn: "9781501143502" },
+    { title: "The Library at Mount Char", author: "Scott Hawkins", isbn: "9780553418620" },
+    { title: "A Short Stay in Hell", author: "Steven L. Peck", isbn: "9780983748427" }
   ], potentialBooks: [
     { title: "Mexican Gothic", author: "Silvia Moreno-Garcia", isbn: "9780525620808" },
     { title: "Frankenstein", author: "Mary Shelley", isbn: "9780553212471" },
@@ -67,9 +69,9 @@ const tileData = [
   { title: "Published 2026", color: "#e5e5e5", goal: 1, booksRead: [], potentialBooks: [
     { title: "Vigil", author: "George Saunders", isbn: "9780525509622" }
   ] },
-  { title: "Romantasy", color: "#bbf7d0", goal: 1, booksRead: [], potentialBooks: [
+  { title: "Romantasy", color: "#bbf7d0", goal: 1, booksRead: [
     { title: "A Court of Mist and Fury", author: "Sarah J. Maas", isbn: "9781635575583" }
-  ] },
+  ], potentialBooks: [] },
   { title: "Reread", color: "#e5e5e5", goal: 1, booksRead: [], potentialBooks: [
     { title: "A Swim in a Pond in the Rain", author: "George Saunders", isbn: "9781984856036" },
     { title: "Foundation", author: "Isaac Asimov", isbn: "9780553293357" },
@@ -92,7 +94,10 @@ const tileData = [
     { title: "Catching Fire", author: "Suzanne Collins", isbn: "9780439023498" },
     { title: "Mockingjay", author: "Suzanne Collins", isbn: "9780439023511" },
     { title: "Lonesome Dove", author: "Larry McMurtry", isbn: "9781439195260" },
-    { title: "Convenience Store Woman", author: "Sayaka Murata", isbn: "9780802128256" }
+    { title: "Convenience Store Woman", author: "Sayaka Murata", isbn: "9780802128256" },
+    { title: "A Court of Mist and Fury", author: "Sarah J. Maas", isbn: "9781635575583" },
+    { title: "The Library at Mount Char", author: "Scott Hawkins", isbn: "9780553418620" },
+    { title: "A Short Stay in Hell", author: "Steven L. Peck", isbn: "9780983748427" }
   ], potentialBooks: [] },
   { title: "Selected at Random", color: "#3b82f6", goal: 1, booksRead: [], potentialBooks: [] },
   { title: "Longer than 700 Pages", color: "#f9a8d4", goal: 3, booksRead: [
@@ -111,7 +116,8 @@ const tileData = [
   { title: "Shorter than 200 Pages", color: "#d2b48c", goal: 4, booksRead: [
     { title: "By Night in Chile", author: "Roberto Bolaño", isbn: "9780811215473" },
     { title: "The Inner Game of Tennis", author: "W. Timothy Gallwey", isbn: "9780679778318" },
-    { title: "Convenience Store Woman", author: "Sayaka Murata", isbn: "9780802128256" }
+    { title: "Convenience Store Woman", author: "Sayaka Murata", isbn: "9780802128256" },
+    { title: "A Short Stay in Hell", author: "Steven L. Peck", isbn: "9780983748427" }
   ], potentialBooks: [
     { title: "Of Mice and Men", author: "John Steinbeck", isbn: "9780140177398" },
     { title: "Sula", author: "Toni Morrison", isbn: "9781400033430" },
@@ -123,7 +129,8 @@ const tileData = [
     { title: "The Hunger Games", author: "Suzanne Collins", isbn: "9780439023481" },
     { title: "Catching Fire", author: "Suzanne Collins", isbn: "9780439023498" },
     { title: "Mockingjay", author: "Suzanne Collins", isbn: "9780439023511" },
-    { title: "Convenience Store Woman", author: "Sayaka Murata", isbn: "9780802128256" }
+    { title: "Convenience Store Woman", author: "Sayaka Murata", isbn: "9780802128256" },
+    { title: "A Court of Mist and Fury", author: "Sarah J. Maas", isbn: "9781635575583" }
   ], potentialBooks: [
     { title: "Katabasis", author: "R.F. Kuang", isbn: "9780063446243" },
     { title: "Orbital", author: "Samantha Harvey", isbn: "9780802161543" },
