@@ -4,11 +4,7 @@ import DetailCard from './DetailCard';
 import './BingoGrid.css';
 
 // Currently reading book - floats behind the bingo card
-const currentlyReading = {
-  title: "White Nights",
-  author: "Fyodor Dostoevsky",
-  isbn: "9780241252086"
-};
+const currentlyReading = null;
 
 // Tile data - books will be filled in later
 // Books use { title, isbn } - covers are fetched from Open Library API
